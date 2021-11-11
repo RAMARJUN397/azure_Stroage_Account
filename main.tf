@@ -18,10 +18,18 @@ resource "azurerm_resource_group" "Terraform_Resource" {
   location = "East US"
 }
 
-# Create a virtual network within the resource group
-resource "azurerm_virtual_network" "TNetwork" {
-  name                = "TNetwork"
+resource "azurerm_service_plan" "example" {
+  name                = "example"
   resource_group_name = "Terraform_Resource"
   location            = "East US"
-  address_space       = ["10.0.0.0/16"]
+  sku_name            = "P1V2"
+}
+
+resource "azurerm_windows_web_app" "example" {
+  name                = "example"
+  resource_group_name = "Terraform_Resource"
+  location            = "East US"
+  service_plan_id     = azurerm_service_plan.example.id
+
+  site_config {}
 }
