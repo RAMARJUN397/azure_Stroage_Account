@@ -18,11 +18,10 @@ resource "azurerm_resource_group" "Terraform_Resource" {
   location = "East US"
 }
 
-data "azurerm_windows_web_app" "webapp" {
-  name                = "tfwebapp"
+# Create a virtual network within the resource group
+resource "azurerm_virtual_network" "TNetwork" {
+  name                = "TNetwork"
   resource_group_name = "Terraform_Resource"
-}
-
-output "id" {
-  value = data.azurerm_windows_web_app.webapp.id
+  location            = "East US"
+  address_space       = ["10.0.0.0/16"]
 }
