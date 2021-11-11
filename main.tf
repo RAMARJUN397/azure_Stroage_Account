@@ -1,11 +1,8 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "1.0.10"
-    }
-  }
+
+ terraform {
+  required_version = ">=0.12.13"
 }
+
 
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
