@@ -94,7 +94,7 @@ resource "azurerm_network_interface" "TFNetworkInter" {
 
 #Create a NSGA
 resource "azurerm_subnet_network_security_group_association" "azsnsga" {
-  network_interface_id = azurerm_network_interface.TFNetworkInter.id
+  #network_interface_id      = azurerm_network_interface.TFNetworkInter.id
   subnet_id                 =azurerm_subnet.terraformsubnet.id
   network_security_group_id = azurerm_network_security_group.TFNGroup.id
 }
@@ -139,7 +139,7 @@ resource "azurerm_linux_virtual_machine" "Terraform_Console" {
   }
   computer_name = "ubuntu"
   admin_username      = "adminuser"
-  disable_password_authentification = false
+  #disable_password_authentification = false
   admin_password      = "P@$$w0rd1234!"
   boot_diagnostics{
     storage_account_uri = azurerm_storage_account.azstorage.primary_blob_endpoint 
