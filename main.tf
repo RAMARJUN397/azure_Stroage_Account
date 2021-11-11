@@ -119,9 +119,6 @@ resource "azurerm_storage_account" "azstorage" {
     environment = "TerraformDemo" 
   }
 }
-
-
-
 #Create Vms
 resource "azurerm_linux_virtual_machine" "Terraform_Console" {
   name                = "myvm"
@@ -129,15 +126,11 @@ resource "azurerm_linux_virtual_machine" "Terraform_Console" {
   network_interface_ids = [azurerm_network_interface.TFNetworkInter.id]
   location            = "East US"
   size                = "Standard_F2"
- 
- 
-
   os_disk {
      name                = "myoses"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
@@ -148,12 +141,10 @@ resource "azurerm_linux_virtual_machine" "Terraform_Console" {
   admin_username      = "adminuser"
   disable_password_authentification = false
   admin_password      = "P@$$w0rd1234!"
-  
   boot_diagnostics{
     storage_account_uri = azurerm_storage_account.azstorage.primary_blob_endpoint 
   }
    tags = {
     environment = "TerraformDemo" 
   }
-  
 }
